@@ -60,10 +60,6 @@ function MasterYi:LoadMenu()
 	self.Menu.Mode.JungleClear:MenuElement({type = MENU, id = "MM", name = "Mana Manager"})
 	self.Menu.Mode.JungleClear.MM:MenuElement({id = "QMana", name = "Min Mana to Q in Jungle Clear(%)", value = 40, min = 0, max = 100, step = 1})
 	self.Menu.Mode.JungleClear:MenuElement({id = "E", name = "Use E", value = true, leftIcon = SpellIcons.E})
-	--Main Menu-- BronzeYi -- Killsteal
-	self.Menu.Mode:MenuElement({type = MENU, id = "Killsteal", name = "Killsteal"})
-	self.Menu.Mode.Killsteal:MenuElement({id = "Q", name = "Q Killsteal", value = true, leftIcon = SpellIcons.Q})
-	self.Menu.Mode.Killsteal:MenuElement({id = "I", name = "Ignite Killsteal", value = true, leftIcon = SpellIcons.I})
 	--Main Menu-- BronzeYi -- Spell Range 
 	self.Menu:MenuElement({type = MENU, id = "Drawing", name = "Spell Range"})
 	self.Menu.Drawing:MenuElement({id = "Q", name = "Draw Q Range", value = true})

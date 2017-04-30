@@ -161,7 +161,7 @@ function MasterYi:Combo()
 		Control.CastSpell(HK_Q,target)
 	    end 	
 	    
-	    if self:IsValidTarget(target,125) and self.Menu.Mode.Combo.W:Value() and self:isReady(_W) and myHero.attackData.state == STATE_WINDUP  then
+	    if self:IsValidTarget(target,125) and self.Menu.Mode.Combo.W:Value() and self:isReady(_W) and myHero.attackData.state == STATE_WINDDOWN  then
 		Control.CastSpell(HK_W)
 	    end
 

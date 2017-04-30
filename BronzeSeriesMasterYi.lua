@@ -78,8 +78,7 @@ function MasterYi:Tick()
 		self:Clear()
 	elseif Harass then
 		self:Harass()		
-	end
-		self:Killsteal()	
+	end	
 end
 
 local ItemHotKey = {

@@ -119,7 +119,7 @@ function Teemo:Combo()
 	
 	local target =  (_G.SDK and _G.SDK.TargetSelector:GetTarget(1000, _G.SDK.DAMAGE_TYPE_PHYSICAL)) or (_G.GOS and _G.GOS:GetTarget(1000,"AD")) or ( _G.EOWLoaded and EOW:GetTarget())
 		
-	if self:IsValidTarget(target,Q.range) and self.Menu.Mode.Combo.Q:Value() and self:isReady(_Q) and myHero.attackData.state == STATE_WINDDOWN and not myHero.isChanneling then
+	if self:IsValidTarget(target,Q.range) and self.Menu.Mode.Combo.Q:Value() and self:isReady(_Q) and not myHero.isChanneling then
 		Control.CastSpell(HK_Q,target)
 	end 
 			

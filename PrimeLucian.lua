@@ -64,6 +64,24 @@ function Lucian:Tick()
 	end	
 end
 
+local ItemHotKey = {
+    [ITEM_1] = HK_ITEM_1,
+    [ITEM_2] = HK_ITEM_2,
+    [ITEM_3] = HK_ITEM_3,
+    [ITEM_4] = HK_ITEM_4,
+    [ITEM_5] = HK_ITEM_5,
+    [ITEM_6] = HK_ITEM_6,
+}
+
+local function GetItemSlot(unit, id)
+  for i = ITEM_1, ITEM_7 do
+    if unit:GetItemData(i).itemID == id then
+      return i
+    end
+  end
+  return 0 
+end
+
 local VectorPointProjectionOnLineSegment = function(v1, v2, v)
 	local cx, cy, ax, ay, bx, by = v.x, (v.z or v.y), v1.x, (v1.z or v1.y), v2.x, (v2.z or v2.y)
         local rL = ((cx - ax) * (bx - ax) + (cy - ay) * (by - ay)) / ((bx - ax) ^ 2 + (by - ay) ^ 2)
@@ -91,7 +109,7 @@ local ClosestToMouse = function(p1, p2)
 end
 
 local CastE = function(target, mode, range) 
-        	local pos = Vector(myHero.pos):Extended(mousePos, range)
+        	local pos = Vector(myHero.pos * -1):Extended(mousePos, range)
         	Control.CastSpell(HK_E, pos)
 end 
 
@@ -152,7 +170,7 @@ function Lucian:isReady (spell)
 end
 
 function Lucian:IsValidTarget(unit,range)
-    return unit ~= nil and unit.valid and unit.visible and not unit.dead and unit.isTargetable and not unit.isImmortal and unit.pos:DistanceTo(myHero.pos) <= Q.range
+    return unit ~= nil and unit.valid and unit.visible and not unit.dead and unit.isTargetable and not unit.isImmortal and unit.pos:DistanceTo(myHero.pos) <= 1500
 end
 
 function Lucian:Combo()
@@ -182,6 +200,12 @@ function Lucian:Combo()
 				Control.CastSpell(HK_R,target)
 			end
 		end
+		
+		if GetItemSlot(myHero, 3144) >= 1 then 
+			if self:IsValidTarget(target,550) and self:isReady(GetItemSlot(myHero, 3144))  then 
+				Control.CastSpell(ItemHotKey[GetItemSlot(myHero, 3144)], target)
+		end
+	end
 end
 
 
@@ -225,7 +249,6 @@ end
 
 
 function Lucian:Draw()
-	--Draw Range
 	if myHero.dead then return end
 		if self.Menu.Drawing.W:Value() then Draw.Circle(myHero.pos, 900, self.Menu.Drawing.Width:Value(), self.Menu.Drawing.Color:Value())
 		end

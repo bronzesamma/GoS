@@ -15,34 +15,28 @@ function Renekton:LoadSpells()
 end
 
 function Renekton:LoadMenu()
-	local MenuIcons = "http://static.lolskill.net/img/champions/64/renekton.png"
-	local SpellIcons = { P = "http://static.lolskill.net/img/abilities/64/Renekton_Predator.png",
-						 Q = "http://static.lolskill.net/img/abilities/64/Renekton_Cleave.png",
-						 W = "http://static.lolskill.net/img/abilities/64/Renekton_Execute.png",
-						 E = "http://static.lolskill.net/img/abilities/64/Renekton_SliceAndDice.png",
-						 R = "http://static.lolskill.net/img/abilities/64/Renekton_Dominus.png" }
 
 	-------Menu------------------------------------------------------------------------------
-	self.Menu = MenuElement({type = MENU, id = "Menu", name = "Renekton", leftIcon = MenuIcons})
+	self.Menu = MenuElement({type = MENU, id = "Menu", name = "Renekton"})
 	-------BronzeSeries----------------------------------------------------------------------
 	self.Menu:MenuElement({type = MENU, id = "Mode", name = "BronzeSeries: Renekton"})
 	-------Combo---------------------------------------------------------------------------------------
 	self.Menu.Mode:MenuElement({type = MENU, id = "Combo", name = "Combo"})
-	self.Menu.Mode.Combo:MenuElement({id = "Q", name = "Use [Q]", value = true, leftIcon = SpellIcons.Q})
-	self.Menu.Mode.Combo:MenuElement({id = "W", name = "Use [W]", value = true, leftIcon = SpellIcons.W})
-	self.Menu.Mode.Combo:MenuElement({id = "E", name = "Use [E]", value = true, leftIcon = SpellIcons.E})
-	self.Menu.Mode.Combo:MenuElement({id = "R", name = "Use auto [R]", value = true, leftIcon = SpellIcons.R})
+	self.Menu.Mode.Combo:MenuElement({id = "Q", name = "Use [Q]", value = true})
+	self.Menu.Mode.Combo:MenuElement({id = "W", name = "Use [W]", value = true})
+	self.Menu.Mode.Combo:MenuElement({id = "E", name = "Use [E]", value = true})
+	self.Menu.Mode.Combo:MenuElement({id = "R", name = "Use auto [R]", value = true})
 	self.Menu.Mode.Combo:MenuElement({id = "RHP", name = "HP% to [R]", value = 15, min = 0, max = 100, step = 1})
 	-------LaneClear------------------------------------------------------------------------------------
 	self.Menu.Mode:MenuElement({type = MENU, id = "LaneClear", name = "Lane Clear"})
-	self.Menu.Mode.LaneClear:MenuElement({id = "Q", name = "Use [Q]", value = true, leftIcon = SpellIcons.Q})
+	self.Menu.Mode.LaneClear:MenuElement({id = "Q", name = "Use [Q]", value = true})
 	self.Menu.Mode.LaneClear:MenuElement({id = "Qhits", name = "Use [Q] when X minions", value = 3,min = 1, max = 7, step = 1})
 	self.Menu.Mode.LaneClear:MenuElement({id = "fm", name = "Fury Manager", drop = {"Save Fury at 50", "Don't save Fury"}, leftIcon = SpellIcons.P})
 	-------JungleClear--------------------------------------------------------------------------------------------------------
 	self.Menu.Mode:MenuElement({type = MENU, id = "JungleClear", name = "Jungle Clear"})
-	self.Menu.Mode.JungleClear:MenuElement({id = "Q", name = "Use [Q]", value = true, leftIcon = SpellIcons.Q})
-	self.Menu.Mode.JungleClear:MenuElement({id = "W", name = "Use [W]", value = true, leftIcon = SpellIcons.W})
-	self.Menu.Mode.JungleClear:MenuElement({id = "E", name = "Use [E]", value = true, leftIcon = SpellIcons.E})
+	self.Menu.Mode.JungleClear:MenuElement({id = "Q", name = "Use [Q]", value = true})
+	self.Menu.Mode.JungleClear:MenuElement({id = "W", name = "Use [W]", value = true})
+	self.Menu.Mode.JungleClear:MenuElement({id = "E", name = "Use [E]", value = true})
 	self.Menu.Mode.JungleClear:MenuElement({id = "fm", name = "Fury Manager", drop = {"Save Fury at 50", "Don't save Fury"}, leftIcon = SpellIcons.P})
 	-------Drawing----------------------------------------------------------------------
 	self.Menu:MenuElement({type = MENU, id = "Drawing", name = "BronzeSeries: Drawings"})

@@ -209,7 +209,7 @@ function Lucian:Harass()
 	
 	if (not _G.SDK and not _G.GOS and not _G.EOWLoaded) then return end
 	
-	local target =  (_G.SDK and _G.SDK.TargetSelector:GetTarget(500, _G.SDK.DAMAGE_TYPE_PHYSICAL)) or (_G.GOS and _G.GOS:GetTarget(500,"AD")) or ( _G.EOWLoaded and EOW:GetTarget())
+	local target =  (_G.SDK and _G.SDK.TargetSelector:GetTarget(900, _G.SDK.DAMAGE_TYPE_PHYSICAL)) or (_G.GOS and _G.GOS:GetTarget(900,"AD")) or ( _G.EOWLoaded and EOW:GetTarget())
 		
 	    if self:IsValidTarget(target,500) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.Harass.MM.Mana:Value() / 100) and self.Menu.Mode.Harass.Q:Value() and self:isReady(_Q) and not myHero.isChanneling  then
 			Control.CastSpell(HK_Q,target)

@@ -157,7 +157,7 @@ function Ashe:KS()
 		if self:IsValidTarget(target,R.range) and target.team ~= myHero.team and self:isReady(_R) and self.Menu.Mode.KS.R:Value() then
 			local Rdmg = ({200, 400, 600})[level] + myHero.ap
 			if Rdmg >= self:HpPred(target,1) + target.hpRegen * 2 then
-				Control.CastSpell(HK_R,target)
+				Control.CastSpell(HK_R,target:GetPrediction(R.speed, R.delay))
 			end
 		end
 	end

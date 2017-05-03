@@ -46,7 +46,7 @@ function Lucian:LoadMenu()
 	self.Menu.Mode.JungleClear:MenuElement({id = "W", name = "Use W", value = true})
 	self.Menu.Mode.JungleClear:MenuElement({id = "E", name = "Use E", value = true})
 	self.Menu.Mode.JungleClear:MenuElement({type = MENU, id = "MM", name = "Mana Manager"})
-	self.Menu.Mode.JungleClear.MM:MenuElement({id = "Mana", name = "Min Mana to Lane Clear(%)", value = 40, min = 0, max = 100, step = 1})
+	self.Menu.Mode.JungleClear.MM:MenuElement({id = "Mana", name = "Min Mana to Jungle Clear(%)", value = 40, min = 0, max = 100, step = 1})
 	--Main Menu-- Lucian -- Spell Range 
 	self.Menu:MenuElement({type = MENU, id = "Drawing", name = "Spell Range"})
 	self.Menu.Drawing:MenuElement({id = "W", name = "Draw W Range", value = true})

@@ -8,41 +8,45 @@ function Lucian:__init()
 end
 
 function Lucian:LoadSpells()
-	Q = { range = 600 }
-	W = { range = 125 }
-	E = { range = 200 }
-	R = { range = 700 }
+	Q = { range = myHero:GetSpellData(_Q).range, delay = myHero:GetSpellData(_Q).delay, speed = myHero:GetSpellData(_Q).speed, width = myHero:GetSpellData(_Q).width }
+	W = { range = myHero:GetSpellData(_W).range, delay = myHero:GetSpellData(_W).delay, speed = myHero:GetSpellData(_W).speed, width = myHero:GetSpellData(_W).width }
+	E = { range = myHero:GetSpellData(_E).range, delay = myHero:GetSpellData(_E).delay, speed = myHero:GetSpellData(_E).speed, width = myHero:GetSpellData(_E).width }
+	R = { range = myHero:GetSpellData(_R).range, delay = myHero:GetSpellData(_R).delay, speed = myHero:GetSpellData(_R).speed, width = myHero:GetSpellData(_R).width }
 end
-
-function Lucian:LoadMenu()
-	local MenuIcons = "http://static.lolskill.net/img/champions/64/lucian.png"
-	local SpellIcons = { Q = "http://static.lolskill.net/img/abilities/64/Lucian_Q.png",
-						 W = "http://static.lolskill.net/img/abilities/64/Lucian_W.png",
-						 E = "http://static.lolskill.net/img/abilities/64/Lucian_E.png",
-						 R = "http://static.lolskill.net/img/abilities/64/Lucian_R.png", }
-	--Main Menu
-	self.Menu = MenuElement({type = MENU, id = "Menu", name = "Lucian", leftIcon = MenuIcons})
 	
+function Lucian:LoadMenu()
+	--Main Menu
+	self.Menu = MenuElement({type = MENU, id = "Menu", name = "Lucian"})
 	--Main Menu-- Lucian
 	self.Menu:MenuElement({type = MENU, id = "Mode", name = "Prime Lucian"})
 	--Main Menu-- Lucian -- Combo
 	self.Menu.Mode:MenuElement({type = MENU, id = "Combo", name = "Combo"})
-	self.Menu.Mode.Combo:MenuElement({id = "Q", name = "Use Q", value = true, leftIcon = SpellIcons.Q})
-	self.Menu.Mode.Combo:MenuElement({id = "W", name = "Use W", value = true, leftIcon = SpellIcons.W})
-	self.Menu.Mode.Combo:MenuElement({id = "E", name = "Use E", value = true, leftIcon = SpellIcons.E})
+	self.Menu.Mode.Combo:MenuElement({id = "Q", name = "Use Q", value = true})
+	self.Menu.Mode.Combo:MenuElement({id = "W", name = "Use W", value = true})
+	self.Menu.Mode.Combo:MenuElement({id = "E", name = "Use E", value = true})
 	self.Menu.Mode.Combo:MenuElement({name = "E Dash Range", id = "Range", value = 125, min = 100, max = 425, step = 5})
-	self.Menu.Mode.Combo:MenuElement({id = "R", name = "Use R", value = true, leftIcon = SpellIcons.R})
+	self.Menu.Mode.Combo:MenuElement({id = "R", name = "Use R", value = true})
 	self.Menu.Mode.Combo:MenuElement({id = "ROK", name = "R % Overkill", value = 100, min = 100, max = 300, step = 5})
 	--Main Menu-- Lucian -- Harass
 	self.Menu.Mode:MenuElement({type = MENU, id = "Harass", name = "Harass"})
-	self.Menu.Mode.Harass:MenuElement({id = "Q", name = "Use Q", value = true, leftIcon = SpellIcons.Q})
+	self.Menu.Mode.Harass:MenuElement({id = "Q", name = "Use Q", value = true})
+	self.Menu.Mode.Harass:MenuElement({id = "W", name = "Use W", value = true})
 	self.Menu.Mode.Harass:MenuElement({type = MENU, id = "MM", name = "Mana Manager"})
-	self.Menu.Mode.Harass.MM:MenuElement({id = "QMana", name = "Min Mana to Q in Harass(%)", value = 40, min = 0, max = 100, step = 1})
+	self.Menu.Mode.Harass.MM:MenuElement({id = "Mana", name = "Min Mana to Harass(%)", value = 40, min = 0, max = 100, step = 1})
 	--Main Menu-- Lucian -- LaneClear
 	self.Menu.Mode:MenuElement({type = MENU, id = "LaneClear", name = "Lane Clear"})
-	self.Menu.Mode.LaneClear:MenuElement({id = "Q", name = "Use Q", value = true, leftIcon = SpellIcons.Q})
+	self.Menu.Mode.LaneClear:MenuElement({id = "Q", name = "Use Q", value = true})
+	self.Menu.Mode.LaneClear:MenuElement({id = "W", name = "Use W", value = true})
+	self.Menu.Mode.LaneClear:MenuElement({id = "E", name = "Use E", value = true})
 	self.Menu.Mode.LaneClear:MenuElement({type = MENU, id = "MM", name = "Mana Manager"})
-	self.Menu.Mode.LaneClear.MM:MenuElement({id = "QMana", name = "Min Mana to Q in Lane Clear(%)", value = 40, min = 0, max = 100, step = 1})
+	self.Menu.Mode.LaneClear.MM:MenuElement({id = "Mana", name = "Min Mana to Lane Clear(%)", value = 40, min = 0, max = 100, step = 1})
+	--Main Menu-- Lucian -- JungleClear
+	self.Menu.Mode:MenuElement({type = MENU, id = "JungleClear", name = "Jungle Clear"})
+	self.Menu.Mode.JungleClear:MenuElement({id = "Q", name = "Use Q", value = true})
+	self.Menu.Mode.JungleClear:MenuElement({id = "W", name = "Use W", value = true})
+	self.Menu.Mode.JungleClear:MenuElement({id = "E", name = "Use E", value = true})
+	self.Menu.Mode.JungleClear:MenuElement({type = MENU, id = "MM", name = "Mana Manager"})
+	self.Menu.Mode.JungleClear.MM:MenuElement({id = "Mana", name = "Min Mana to Lane Clear(%)", value = 40, min = 0, max = 100, step = 1})
 	--Main Menu-- Lucian -- Spell Range 
 	self.Menu:MenuElement({type = MENU, id = "Drawing", name = "Spell Range"})
 	self.Menu.Drawing:MenuElement({id = "W", name = "Draw W Range", value = true})
@@ -61,25 +65,9 @@ function Lucian:Tick()
 		self:Clear()
 	elseif Harass then
 		self:Harass()		
-	end	
-end
-
-local ItemHotKey = {
-    [ITEM_1] = HK_ITEM_1,
-    [ITEM_2] = HK_ITEM_2,
-    [ITEM_3] = HK_ITEM_3,
-    [ITEM_4] = HK_ITEM_4,
-    [ITEM_5] = HK_ITEM_5,
-    [ITEM_6] = HK_ITEM_6,
-}
-
-local function GetItemSlot(unit, id)
-  for i = ITEM_1, ITEM_7 do
-    if unit:GetItemData(i).itemID == id then
-      return i
-    end
-  end
-  return 0 
+	end
+		self:AbleAA()
+		self:DisableAA()
 end
 
 local VectorPointProjectionOnLineSegment = function(v1, v2, v)
@@ -109,8 +97,8 @@ local ClosestToMouse = function(p1, p2)
 end
 
 local CastE = function(target, mode, range) 
-        	local pos = Vector(myHero.pos * -1):Extended(mousePos, range)
-        	Control.CastSpell(HK_E, pos)
+        	local pos = Vector(myHero.pos):Extended(mousePos, range)
+        	Control.CastSpell(HK_E, pos * -1)
 end 
 
 function  Lucian:isCasting(spell)
@@ -173,6 +161,18 @@ function Lucian:IsValidTarget(unit,range)
     return unit ~= nil and unit.valid and unit.visible and not unit.dead and unit.isTargetable and not unit.isImmortal and unit.pos:DistanceTo(myHero.pos) <= 1500
 end
 
+function Lucian:DisableAA()
+		if self:isCasting(_R)
+			then _G.SDK.Orbwalker:SetAttack(false)
+		end
+end
+
+function Lucian:AbleAA()
+		if not self:isCasting(_R)
+			then _G.SDK.Orbwalker:SetAttack(true)
+		end
+end
+
 function Lucian:Combo()
 
 	if self:GetValidEnemy(2500) == false then return end
@@ -185,41 +185,38 @@ function Lucian:Combo()
 			Control.CastSpell(HK_Q,target)
 	    end 	
 	    
-	    if self:IsValidTarget(target,900) and self.Menu.Mode.Combo.W:Value() and self:isReady(_W) and myHero.attackData.state == STATE_WINDDOWN  and not self:isCasting(_R) then
-			Control.CastSpell(HK_W,target)
+	    if self:IsValidTarget(target,900) and self.Menu.Mode.Combo.W:Value() and self:isReady(_W) and target:GetCollision(W.width,W.speed,W.delay) and myHero.attackData.state == STATE_WINDDOWN  and not self:isCasting(_R) then
+			Control.CastSpell(HK_W,target:GetPrediction(W.speed, W.delay))
 	    end
 
 		if self:IsValidTarget(target,E.range*2) and self.Menu.Mode.Combo.E:Value() and self:isReady(_E) and myHero.attackData.state == STATE_WINDDOWN  then
 			CastE(target, self.Menu.Mode.Combo.Range:Value())
 	    end
 
-		if self:IsValidTarget(target,R.range) and self.Menu.Mode.Combo.R:Value() and self:isReady(_R) and not self:isCasting(_R) then
+		if self:IsValidTarget(target,R.range) and self.Menu.Mode.Combo.R:Value() and target:GetCollision(R.width,R.speed,R.delay) and self:isReady(_R) and not self:isCasting(_R) then
 			local level = myHero:GetSpellData(_R).level
 			local Rdmg = (({20, 35, 50})[level] + 0.1 * myHero.ap + 0.20 * myHero.totalDamage) * (({20, 25, 30})[level])
 			if Rdmg >= self:HpPred(target,1) * (self.Menu.Mode.Combo.ROK:Value() / 100) + target.hpRegen * 2 then
-				Control.CastSpell(HK_R,target)
+					Control.CastSpell(HK_R,target:GetPrediction(R.speed, R.delay))
+				end
 			end
-		end
-		
-		if GetItemSlot(myHero, 3144) >= 1 then 
-			if self:IsValidTarget(target,550) and self:isReady(GetItemSlot(myHero, 3144))  then 
-				Control.CastSpell(ItemHotKey[GetItemSlot(myHero, 3144)], target)
-		end
-	end
 end
 
 
 function Lucian:Harass()
 
-	if self:GetValidEnemy(500) == false then return end
+	if self:GetValidEnemy(900) == false then return end
 	
 	if (not _G.SDK and not _G.GOS and not _G.EOWLoaded) then return end
 	
 	local target =  (_G.SDK and _G.SDK.TargetSelector:GetTarget(500, _G.SDK.DAMAGE_TYPE_PHYSICAL)) or (_G.GOS and _G.GOS:GetTarget(500,"AD")) or ( _G.EOWLoaded and EOW:GetTarget())
 		
-	    if self:IsValidTarget(target,500) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.Harass.MM.QMana:Value() / 100) and self.Menu.Mode.Harass.Q:Value() and self:isReady(_Q) and not myHero.isChanneling  then
-		Control.CastSpell(HK_Q,target)
-	end
+	    if self:IsValidTarget(target,500) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.Harass.MM.Mana:Value() / 100) and self.Menu.Mode.Harass.Q:Value() and self:isReady(_Q) and not myHero.isChanneling  then
+			Control.CastSpell(HK_Q,target)
+		end
+		if self:IsValidTarget(target,900) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.Harass.MM.Mana:Value() / 100) and self.Menu.Mode.Harass.W:Value() and self:isReady(_W) and not myHero.isChanneling  then
+			Control.CastSpell(HK_Q,target:GetPrediction(W.speed, W.delay))
+		end
 end
 
 function Lucian:Clear()
@@ -228,13 +225,32 @@ function Lucian:Clear()
 		for i = 1, Game.MinionCount() do
 		local minion = Game.Minion(i)
 		if  minion.team == 200 then
-			if self:IsValidTarget(minion,500) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.LaneClear.MM.QMana:Value() / 100) and self.Menu.Mode.LaneClear.Q:Value() and self:isReady(_Q) then
-				if self:CountEnemyMinions(Q.range) >= 2 then
+			if self:IsValidTarget(minion,500) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.LaneClear.MM.Mana:Value() / 100) and self.Menu.Mode.LaneClear.Q:Value() and self:isReady(_Q) then
+					Control.CastSpell(HK_Q,target)
+				break
+			end
+			if self:IsValidTarget(minion,900) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.LaneClear.MM.Mana:Value() / 100) and self.Menu.Mode.LaneClear.W:Value() and self:isReady(_W) then
+					Control.CastSpell(HK_W,target)
+				break
+			end
+			if self:IsValidTarget(minion,E.range*2) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.LaneClear.MM.Mana:Value() / 100) and self.Menu.Mode.LaneClear.E:Value() and self:isReady(_E) then
+					CastE(target, 100)
+				break
+			end
+		elseif minion.team == 300 then
+			if self:IsValidTarget(minion,500) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.JungleClear.MM.Mana:Value() / 100) and self.Menu.Mode.JungleClear.Q:Value() and self:isReady(_Q) then
 					Control.CastSpell(HK_Q,target)
 				break
 				end
 			end
-		end	
+			if self:IsValidTarget(minion,900) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.JungleClear.MM.Mana:Value() / 100) and self.Menu.Mode.JungleClear.W:Value() and self:isReady(_W) then
+					Control.CastSpell(HK_W,target)
+				break
+			end
+			if self:IsValidTarget(minion,E.range*2) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.JungleClear.MM.Mana:Value() / 100) and self.Menu.Mode.JungleClear.E:Value() and self:isReady(_E) then
+					CastE(target, 100)
+				break
+			end
 	end
 end
 

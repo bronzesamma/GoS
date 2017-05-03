@@ -46,7 +46,7 @@ function Lucian:LoadMenu()
 	self.Menu.Mode.JungleClear:MenuElement({id = "W", name = "Use W", value = true})
 	self.Menu.Mode.JungleClear:MenuElement({id = "E", name = "Use E", value = true})
 	self.Menu.Mode.JungleClear:MenuElement({type = MENU, id = "MM", name = "Mana Manager"})
-	self.Menu.Mode.JungleClear.MM:MenuElement({id = "Mana", name = "Min Mana to Jungle Clear(%)", value = 40, min = 0, max = 100, step = 1})
+	self.Menu.Mode.JungleClear.MM:MenuElement({id = "Mana", name = "Min Mana to Lane Clear(%)", value = 40, min = 0, max = 100, step = 1})
 	--Main Menu-- Lucian -- Spell Range 
 	self.Menu:MenuElement({type = MENU, id = "Drawing", name = "Spell Range"})
 	self.Menu.Drawing:MenuElement({id = "W", name = "Draw W Range", value = true})
@@ -63,6 +63,7 @@ function Lucian:Tick()
 		self:Combo()
 	elseif Clear then
 		self:Clear()
+		self:JClear()
 	elseif Harass then
 		self:Harass()		
 	end
@@ -215,42 +216,53 @@ function Lucian:Harass()
 			Control.CastSpell(HK_Q,target)
 		end
 		if self:IsValidTarget(target,900) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.Harass.MM.Mana:Value() / 100) and self.Menu.Mode.Harass.W:Value() and self:isReady(_W) and not myHero.isChanneling  then
-			Control.CastSpell(HK_W,target:GetPrediction(W.speed, W.delay))
+			Control.CastSpell(HK_Q,target:GetPrediction(W.speed, W.delay))
 		end
 end
 
 function Lucian:Clear()
 
-	if self:GetValidMinion(900) == false then return end
+	if self:GetValidMinion(600) == false then return end
+	
 		for i = 1, Game.MinionCount() do
 		local minion = Game.Minion(i)
 		if  minion.team == 200 then
 			if self:IsValidTarget(minion,500) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.LaneClear.MM.Mana:Value() / 100) and self.Menu.Mode.LaneClear.Q:Value() and self:isReady(_Q) then
-					Control.CastSpell(HK_Q,target)
+					Control.CastSpell(HK_Q,minion.pos)
 				break
 			end
-			if self:IsValidTarget(minion,900) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.LaneClear.MM.Mana:Value() / 100) and self.Menu.Mode.LaneClear.W:Value() and self:isReady(_W) then
-					Control.CastSpell(HK_W,target)
+			if self:IsValidTarget(minion,600) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.LaneClear.MM.Mana:Value() / 100) and self.Menu.Mode.LaneClear.W:Value() and self:isReady(_W) then
+					Control.CastSpell(HK_W,minion.pos)
 				break
 			end
-			if self:IsValidTarget(minion,E.range*2) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.LaneClear.MM.Mana:Value() / 100) and self.Menu.Mode.LaneClear.E:Value() and self:isReady(_E) then
-					CastE(target, 100)
+			if self:IsValidTarget(minion,600) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.LaneClear.MM.Mana:Value() / 100) and self.Menu.Mode.LaneClear.E:Value() and self:isReady(_E) then
+					Control.CastSpell(HK_E)
 				break
 			end
-		elseif minion.team == 300 then
+		end
+	end
+end
+
+function Lucian:JClear()
+
+	if self:GetValidMinion(600) == false then return end
+	
+		for i = 1, Game.MinionCount() do
+		local minion = Game.Minion(i)
+		if  minion.team == 300 then
 			if self:IsValidTarget(minion,500) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.JungleClear.MM.Mana:Value() / 100) and self.Menu.Mode.JungleClear.Q:Value() and self:isReady(_Q) then
-					Control.CastSpell(HK_Q,target)
-				break
-				end
-			end
-			if self:IsValidTarget(minion,900) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.JungleClear.MM.Mana:Value() / 100) and self.Menu.Mode.JungleClear.W:Value() and self:isReady(_W) then
-					Control.CastSpell(HK_W,target)
+					Control.CastSpell(HK_Q,minion.pos)
 				break
 			end
-			if self:IsValidTarget(minion,E.range*2) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.JungleClear.MM.Mana:Value() / 100) and self.Menu.Mode.JungleClear.E:Value() and self:isReady(_E) then
-					CastE(target, 100)
+			if self:IsValidTarget(minion,600) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.JungleClear.MM.Mana:Value() / 100) and self.Menu.Mode.JungleClear.W:Value() and self:isReady(_W) then
+					Control.CastSpell(HK_W,minion.pos)
 				break
 			end
+			if self:IsValidTarget(minion,600) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.JungleClear.MM.Mana:Value() / 100) and self.Menu.Mode.JungleClear.E:Value() and self:isReady(_E) then
+					Control.CastSpell(HK_E)
+				break
+			end
+		end
 	end
 end
 

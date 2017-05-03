@@ -186,7 +186,7 @@ function Lucian:Combo()
 			Control.CastSpell(HK_Q,target)
 	    end 	
 	    
-	    if self:IsValidTarget(target,900) and self.Menu.Mode.Combo.W:Value() and self:isReady(_W) and target:GetCollision(W.width,W.speed,W.delay) and myHero.attackData.state == STATE_WINDDOWN  and not self:isCasting(_R) then
+	    if self:IsValidTarget(target,900) and self.Menu.Mode.Combo.W:Value() and self:isReady(_W) and target:GetCollision(W.width,W.speed,W.delay) == 0 and myHero.attackData.state == STATE_WINDDOWN  and not self:isCasting(_R) then
 			Control.CastSpell(HK_W,target:GetPrediction(W.speed, W.delay))
 	    end
 
@@ -215,7 +215,7 @@ function Lucian:Harass()
 	    if self:IsValidTarget(target,500) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.Harass.MM.Mana:Value() / 100) and self.Menu.Mode.Harass.Q:Value() and self:isReady(_Q) and not myHero.isChanneling  then
 			Control.CastSpell(HK_Q,target)
 		end
-		if self:IsValidTarget(target,900) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.Harass.MM.Mana:Value() / 100) and self.Menu.Mode.Harass.W:Value() and self:isReady(_W) and not myHero.isChanneling  then
+		if self:IsValidTarget(target,900) and target:GetCollision(W.width,W.speed,W.delay) == 0 and (myHero.mana/myHero.maxMana >= self.Menu.Mode.Harass.MM.Mana:Value() / 100) and self.Menu.Mode.Harass.W:Value() and self:isReady(_W) and not myHero.isChanneling  then
 			Control.CastSpell(HK_W,target:GetPrediction(W.speed, W.delay))
 		end
 end

@@ -15,14 +15,6 @@ function MasterYi:LoadSpells()
 end
 
 function MasterYi:LoadMenu()
-	local MenuIcons = "http://static.lolskill.net/img/champions/64/masteryi.png"
-	local SpellIcons = { Q = "http://static.lolskill.net/img/abilities/64/MasterYi_Q.png",
-						 W = "http://static.lolskill.net/img/abilities/64/MasterYi_W.png",
-						 E = "http://static.lolskill.net/img/abilities/64/MasterYi_E1.png",
-						 R = "http://static.lolskill.net/img/abilities/64/MasterYi_R.png",
-						 I = "http://static.lolskill.net/img/spells/32/14.png",
-						 S = "http://static.lolskill.net/img/spells/32/11.png",
-						 EX = "http://static.lolskill.net/img/spells/32/3.png", }
 	--Main Menu
 	self.Menu = MenuElement({type = MENU, id = "Menu", name = "MasterYi", leftIcon = MenuIcons})
 	
@@ -30,36 +22,36 @@ function MasterYi:LoadMenu()
 	self.Menu:MenuElement({type = MENU, id = "Mode", name = "BronzeSeries: Master Yi"})
 	--Main Menu-- BronzeYi -- Combo
 	self.Menu.Mode:MenuElement({type = MENU, id = "Combo", name = "Combo"})
-	self.Menu.Mode.Combo:MenuElement({id = "Q", name = "Use Q", value = true, leftIcon = SpellIcons.Q})
-	self.Menu.Mode.Combo:MenuElement({id = "W", name = "Use W", value = true, leftIcon = SpellIcons.W})
-	self.Menu.Mode.Combo:MenuElement({id = "E", name = "Use E", value = true, leftIcon = SpellIcons.E})
-	self.Menu.Mode.Combo:MenuElement({id = "R", name = "Use R", value = true, leftIcon = SpellIcons.R})
+	self.Menu.Mode.Combo:MenuElement({id = "Q", name = "Use Q", value = true})
+	self.Menu.Mode.Combo:MenuElement({id = "W", name = "Use W", value = true})
+	self.Menu.Mode.Combo:MenuElement({id = "E", name = "Use E", value = true})
+	self.Menu.Mode.Combo:MenuElement({id = "R", name = "Use R", value = true})
 	self.Menu.Mode.Combo:MenuElement({type = MENU, id = "Spell", name = "Summoner Spells"})
-	self.Menu.Mode.Combo.Spell:MenuElement({id = "I", name = "Use Ignite", value = true, leftIcon = SpellIcons.I})		
+	self.Menu.Mode.Combo.Spell:MenuElement({id = "I", name = "Use Ignite", value = true})		
 	self.Menu.Mode.Combo.Spell:MenuElement({id = "IMode", name = "Ignite Mode", drop = {"Killable", "Custom"}})
 	self.Menu.Mode.Combo.Spell:MenuElement({id = "IHP", name = "Ignite when target HP%", value = 50, min = 0, max = 100, step = 1})
-	self.Menu.Mode.Combo.Spell:MenuElement({id = "S", name = "Use Smite", value = true, leftIcon= SpellIcons.S})
+	self.Menu.Mode.Combo.Spell:MenuElement({id = "S", name = "Use Smite", value = true})
 	self.Menu.Mode.Combo.Spell:MenuElement({id = "SMode", name = "Smite Mode", drop = {"Killable", "Custom"}, tooltip = "Will cast on Killable mode just if you have blue Smite"})
 	self.Menu.Mode.Combo.Spell:MenuElement({id = "SHP", name = "Smite when target HP%", value = 50, min = 0, max = 100, step = 1})
-	self.Menu.Mode.Combo.Spell:MenuElement({id = "EX", name = "Use Exhaust", value = true, leftIcon= SpellIcons.EX})
+	self.Menu.Mode.Combo.Spell:MenuElement({id = "EX", name = "Use Exhaust", value = true})
 	self.Menu.Mode.Combo.Spell:MenuElement({id = "EXHP", name = "Exhaust when target HP%", value = 50, min = 0, max = 100, step = 1})
 	--Main Menu-- BronzeYi -- Harass
 	self.Menu.Mode:MenuElement({type = MENU, id = "Harass", name = "Harass"})
-	self.Menu.Mode.Harass:MenuElement({id = "Q", name = "Use Q", value = true, leftIcon = SpellIcons.Q})
+	self.Menu.Mode.Harass:MenuElement({id = "Q", name = "Use Q", value = true})
 	self.Menu.Mode.Harass:MenuElement({type = MENU, id = "MM", name = "Mana Manager"})
 	self.Menu.Mode.Harass.MM:MenuElement({id = "QMana", name = "Min Mana to Q in Harass(%)", value = 40, min = 0, max = 100, step = 1})
 	--Main Menu-- BronzeYi -- LaneClear
 	self.Menu.Mode:MenuElement({type = MENU, id = "LaneClear", name = "Lane Clear"})
-	self.Menu.Mode.LaneClear:MenuElement({id = "Q", name = "Use Q", value = true, leftIcon = SpellIcons.Q})
+	self.Menu.Mode.LaneClear:MenuElement({id = "Q", name = "Use Q", value = true})
 	self.Menu.Mode.LaneClear:MenuElement({type = MENU, id = "MM", name = "Mana Manager"})
 	self.Menu.Mode.LaneClear.MM:MenuElement({id = "QMana", name = "Min Mana to Q in Lane Clear(%)", value = 40, min = 0, max = 100, step = 1})
 	self.Menu.Mode.LaneClear:MenuElement({id = "QMinion", name = "Use Q when X minions", value = 3,min = 1, max = 4, step = 1})
 	--Main Menu-- BronzeYi -- JungleClear
 	self.Menu.Mode:MenuElement({type = MENU, id = "JungleClear", name = "Jungle Clear"})
-	self.Menu.Mode.JungleClear:MenuElement({id = "Q", name = "Use Q", value = true, leftIcon = SpellIcons.Q})
+	self.Menu.Mode.JungleClear:MenuElement({id = "Q", name = "Use Q", value = true})
 	self.Menu.Mode.JungleClear:MenuElement({type = MENU, id = "MM", name = "Mana Manager"})
 	self.Menu.Mode.JungleClear.MM:MenuElement({id = "QMana", name = "Min Mana to Q in Jungle Clear(%)", value = 40, min = 0, max = 100, step = 1})
-	self.Menu.Mode.JungleClear:MenuElement({id = "E", name = "Use E", value = true, leftIcon = SpellIcons.E})
+	self.Menu.Mode.JungleClear:MenuElement({id = "E", name = "Use E", value = true})
 	--Main Menu-- BronzeYi -- Spell Range 
 	self.Menu:MenuElement({type = MENU, id = "Drawing", name = "Spell Range"})
 	self.Menu.Drawing:MenuElement({id = "Q", name = "Draw Q Range", value = true})

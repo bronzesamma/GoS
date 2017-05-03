@@ -61,6 +61,7 @@ function Ashe:Tick()
 		self:Combo()
 	elseif Clear then
 		self:Clear()
+		self:JClear()
 	elseif Harass then
 		self:Harass()		
 	end	
@@ -149,6 +150,8 @@ end
 function Ashe:KS()
     if self:GetValidEnemy(1700) == false then return end
 	
+	local target =  (_G.SDK and _G.SDK.TargetSelector:GetTarget(1700, _G.SDK.DAMAGE_TYPE_PHYSICAL)) or (_G.GOS and _G.GOS:GetTarget(1700,"AD")) or ( _G.EOWLoaded and EOW:GetTarget())
+	
 	local level = myHero:GetSpellData(_R).level
 	if level == nil or level == 0 then return end
 	
@@ -181,7 +184,8 @@ end
 
 function Ashe:Clear()
 
-	if self:GetValidMinion(1200) == false then return end
+	if self:GetValidMinion(600) == false then return end
+	
 		for i = 1, Game.MinionCount() do
 		local minion = Game.Minion(i)
 		if  minion.team == 200 then
@@ -189,20 +193,30 @@ function Ashe:Clear()
 					Control.CastSpell(HK_Q)
 				break
 			end
-			if self:IsValidTarget(minion,1200) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.LaneClear.MM.Mana:Value() / 100) and self.Menu.Mode.LaneClear.W:Value() and self:isReady(_W) then
-					Control.CastSpell(HK_W,target)
+			if self:IsValidTarget(minion,600) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.LaneClear.MM.Mana:Value() / 100) and self.Menu.Mode.LaneClear.W:Value() and self:isReady(_W) then
+					Control.CastSpell(HK_W,minion.pos)
 				break
 			end
-		elseif minion.team == 300 then
+		end
+	end
+end
+
+function Ashe:JClear()
+
+	if self:GetValidMinion(600) == false then return end
+	
+		for i = 1, Game.MinionCount() do
+		local minion = Game.Minion(i)
+		if  minion.team == 300 then
 			if self:IsValidTarget(minion,600) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.JungleClear.MM.Mana:Value() / 100) and self.Menu.Mode.JungleClear.Q:Value() and self:isReady(_Q) then
 					Control.CastSpell(HK_Q)
 				break
-				end
 			end
-			if self:IsValidTarget(minion,1200) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.JungleClear.MM.Mana:Value() / 100) and self.Menu.Mode.JungleClear.W:Value() and self:isReady(_W) then
-					Control.CastSpell(HK_W,target)
+			if self:IsValidTarget(minion,600) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.JungleClear.MM.Mana:Value() / 100) and self.Menu.Mode.JungleClear.W:Value() and self:isReady(_W) then
+					Control.CastSpell(HK_W,minion.pos)
 				break
 			end
+		end
 	end
 end
 

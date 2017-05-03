@@ -215,7 +215,7 @@ function Lucian:Harass()
 			Control.CastSpell(HK_Q,target)
 		end
 		if self:IsValidTarget(target,900) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.Harass.MM.Mana:Value() / 100) and self.Menu.Mode.Harass.W:Value() and self:isReady(_W) and not myHero.isChanneling  then
-			Control.CastSpell(HK_Q,target:GetPrediction(W.speed, W.delay))
+			Control.CastSpell(HK_W,target:GetPrediction(W.speed, W.delay))
 		end
 end
 

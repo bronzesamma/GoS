@@ -15,14 +15,6 @@ function XinZhao:LoadSpells()
 end
 
 function XinZhao:LoadMenu()
-	local MenuIcons = "http://static.lolskill.net/img/champions/64/xinzhao.png"
-	local SpellIcons = { Q = "http://static.lolskill.net/img/abilities/64/XinZhao_ThreeTalon.png",
-						 W = "http://static.lolskill.net/img/abilities/64/XinZhao_BattleCry.png",
-						 E = "http://static.lolskill.net/img/abilities/64/XinZhao_Charge.png",
-						 R = "http://static.lolskill.net/img/abilities/64/XinZhao_CrescentSweep.png",
-						 I = "http://static.lolskill.net/img/spells/32/14.png",
-						 S = "http://static.lolskill.net/img/spells/32/11.png",
-						 EX = "http://static.lolskill.net/img/spells/32/3.png", }
 	--Main Menu
 	self.Menu = MenuElement({type = MENU, id = "Menu", name = "XinZhao", leftIcon = MenuIcons})
 	
@@ -30,10 +22,10 @@ function XinZhao:LoadMenu()
 	self.Menu:MenuElement({type = MENU, id = "Mode", name = "BronzeSeries: Xin Zhao"})
 	--Main Menu-- BronzeZhao -- Combo
 	self.Menu.Mode:MenuElement({type = MENU, id = "Combo", name = "Combo"})
-	self.Menu.Mode.Combo:MenuElement({id = "Q", name = "Use Q", value = true, leftIcon = SpellIcons.Q})
-	self.Menu.Mode.Combo:MenuElement({id = "W", name = "Use W", value = true, leftIcon = SpellIcons.W})
-	self.Menu.Mode.Combo:MenuElement({id = "E", name = "Use E", value = true, leftIcon = SpellIcons.E})
-	self.Menu.Mode.Combo:MenuElement({id = "R", name = "Use R", value = true, leftIcon = SpellIcons.R})
+	self.Menu.Mode.Combo:MenuElement({id = "Q", name = "Use Q", value = true})
+	self.Menu.Mode.Combo:MenuElement({id = "W", name = "Use W", value = true})
+	self.Menu.Mode.Combo:MenuElement({id = "E", name = "Use E", value = true})
+	self.Menu.Mode.Combo:MenuElement({id = "R", name = "Use R", value = true})
 	self.Menu.Mode.Combo:MenuElement({id = "RHP", name = "R when target HP%", value = 30, min = 0, max = 100, step = 1})
 	self.Menu.Mode.Combo:MenuElement({type = MENU, id = "Spell", name = "Summoner Spells"})
 	self.Menu.Mode.Combo.Spell:MenuElement({id = "I", name = "Use Ignite", value = true, leftIcon = SpellIcons.I})		
@@ -46,18 +38,18 @@ function XinZhao:LoadMenu()
 	self.Menu.Mode.Combo.Spell:MenuElement({id = "EXHP", name = "Exhaust when target HP%", value = 50, min = 0, max = 100, step = 1})
 	--Main Menu-- BronzeZhao -- Harass
 	self.Menu.Mode:MenuElement({type = MENU, id = "Harass", name = "Harass"})
-	self.Menu.Mode.Harass:MenuElement({id = "E", name = "Use E", value = true, leftIcon = SpellIcons.E})
+	self.Menu.Mode.Harass:MenuElement({id = "E", name = "Use E", value = true})
 	self.Menu.Mode.Harass:MenuElement({type = MENU, id = "MM", name = "Mana Manager"})
 	self.Menu.Mode.Harass.MM:MenuElement({id = "EMana", name = "Min Mana to E in Harass(%)", value = 40, min = 0, max = 100, step = 1})
 	--Main Menu-- BronzeZhao -- LaneClear
 	self.Menu.Mode:MenuElement({type = MENU, id = "LaneClear", name = "Lane Clear"})
-	self.Menu.Mode.LaneClear:MenuElement({id = "W", name = "Use W", value = true, leftIcon = SpellIcons.W})
+	self.Menu.Mode.LaneClear:MenuElement({id = "W", name = "Use W", value = true})
 	self.Menu.Mode.LaneClear:MenuElement({type = MENU, id = "MM", name = "Mana Manager"})
 	self.Menu.Mode.LaneClear.MM:MenuElement({id = "WMana", name = "Min Mana to W in Lane Clear(%)", value = 40, min = 0, max = 100, step = 1})
 	self.Menu.Mode.LaneClear:MenuElement({id = "WMinion", name = "Use W when X minions", value = 3,min = 1, max = 4, step = 1})
 	--Main Menu-- BronzeZhao -- JungleClear
 	self.Menu.Mode:MenuElement({type = MENU, id = "JungleClear", name = "Jungle Clear"})
-	self.Menu.Mode.JungleClear:MenuElement({id = "Q", name = "Use Q", value = true, leftIcon = SpellIcons.Q})
+	self.Menu.Mode.JungleClear:MenuElement({id = "Q", name = "Use Q", value = true})
 	self.Menu.Mode.JungleClear:MenuElement({type = MENU, id = "MM", name = "Mana Manager"})
 	self.Menu.Mode.JungleClear.MM:MenuElement({id = "QMana", name = "Min Mana to Q in Jungle Clear(%)", value = 40, min = 0, max = 100, step = 1})
 	self.Menu.Mode.JungleClear:MenuElement({id = "W", name = "Use W", value = true, leftIcon = SpellIcons.W})

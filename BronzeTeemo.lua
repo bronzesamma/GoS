@@ -15,33 +15,28 @@ function Teemo:LoadSpells()
 end
 
 function Teemo:LoadMenu()
-	local MenuIcons = "http://static.lolskill.net/img/champions/64/Teemo.png"
-	local SpellIcons = { Q = "http://static.lolskill.net/img/abilities/64/Teemo_Q.png",
-						 W = "http://static.lolskill.net/img/abilities/64/Teemo_W.png",
-						 E = "http://static.lolskill.net/img/abilities/64/Teemo_E.png",
-						 R = "http://static.lolskill.net/img/abilities/64/Teemo_R.png" }
 
 	-------Menu------------------------------------------------------------------------------
-	self.Menu = MenuElement({type = MENU, id = "Menu", name = "Teemo", leftIcon = MenuIcons})
+	self.Menu = MenuElement({type = MENU, id = "Menu", name = "Teemo"})
 	-------BronzeSeries----------------------------------------------------------------------
 	self.Menu:MenuElement({type = MENU, id = "Mode", name = "BronzeSeries: Teemo"})
 	-------Combo---------------------------------------------------------------------------------------
 	self.Menu.Mode:MenuElement({type = MENU, id = "Combo", name = "Combo"})
-	self.Menu.Mode.Combo:MenuElement({id = "Q", name = "Use [Q]", value = true, leftIcon = SpellIcons.Q})
-	self.Menu.Mode.Combo:MenuElement({id = "W", name = "Use [W]", value = true, leftIcon = SpellIcons.W})
-	self.Menu.Mode.Combo:MenuElement({id = "R", name = "Use [R]", value = true, leftIcon = SpellIcons.R})
+	self.Menu.Mode.Combo:MenuElement({id = "Q", name = "Use [Q]", value = true})
+	self.Menu.Mode.Combo:MenuElement({id = "W", name = "Use [W]", value = true})
+	self.Menu.Mode.Combo:MenuElement({id = "R", name = "Use [R]", value = true})
 	-------LaneClear------------------------------------------------------------------------------------
 	self.Menu.Mode:MenuElement({type = MENU, id = "LaneClear", name = "Lane Clear"})
-	self.Menu.Mode.LaneClear:MenuElement({id = "Q", name = "Use [Q]", value = true, leftIcon = SpellIcons.Q})
-	self.Menu.Mode.LaneClear:MenuElement({id = "R", name = "Use [R]", value = true, leftIcon = SpellIcons.R})
+	self.Menu.Mode.LaneClear:MenuElement({id = "Q", name = "Use [Q]", value = true})
+	self.Menu.Mode.LaneClear:MenuElement({id = "R", name = "Use [R]", value = true})
 	self.Menu.Mode.LaneClear:MenuElement({id = "RKillMinion", name = "Use [R] when X minions", value = 3,min = 0, max = 7, step = 1})
 	self.Menu.Mode.LaneClear:MenuElement({type = MENU, id = "mm", name = "Mana Manager"})
 	self.Menu.Mode.LaneClear.mm:MenuElement({id = "Qmana", name = "Min. mana to [Q]", value = 40, min = 0, max = 100, step = 2})
 	self.Menu.Mode.LaneClear.mm:MenuElement({id = "Rmana", name = "Min. mana to [R]", value = 40, min = 0, max = 100, step = 2})
 	-------JungleClear--------------------------------------------------------------------------------------------------------
 	self.Menu.Mode:MenuElement({type = MENU, id = "JungleClear", name = "Jungle Clear"})
-	self.Menu.Mode.JungleClear:MenuElement({id = "Q", name = "Use [Q]", value = true, leftIcon = SpellIcons.Q})
-	self.Menu.Mode.JungleClear:MenuElement({id = "R", name = "Use [R]", value = true, leftIcon = SpellIcons.R})
+	self.Menu.Mode.JungleClear:MenuElement({id = "Q", name = "Use [Q]", value = true})
+	self.Menu.Mode.JungleClear:MenuElement({id = "R", name = "Use [R]", value = true})
 	self.Menu.Mode.JungleClear:MenuElement({type = MENU, id = "mm", name = "Mana Manager"})
 	self.Menu.Mode.JungleClear.mm:MenuElement({id = "Qmana", name = "Min. mana to [Q]", value = 40, min = 0, max = 100, step = 2})
 	self.Menu.Mode.JungleClear.mm:MenuElement({id = "Rmana", name = "Min. mana to [R]", value = 40, min = 0, max = 100, step = 2})

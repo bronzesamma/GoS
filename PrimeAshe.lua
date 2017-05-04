@@ -177,7 +177,7 @@ function Ashe:Harass()
 	    if self:IsValidTarget(target,600) and (myHero.mana/myHero.maxMana >= self.Menu.Mode.Harass.MM.Mana:Value() / 100) and self.Menu.Mode.Harass.Q:Value() and self:isReady(_Q) and not myHero.isChanneling  then
 			Control.CastSpell(HK_Q)
 		end
-		if self:IsValidTarget(target,1200) and target:GetCollision(W.width,W.speed,W.delay) == 0 and myHero.mana/myHero.maxMana >= self.Menu.Mode.Harass.MM.Mana:Value() / 100) and self.Menu.Mode.Harass.W:Value() and self:isReady(_W) and not myHero.isChanneling  then
+		if self:IsValidTarget(target,1200) and target:GetCollision(W.width,W.speed,W.delay) == 0 and (myHero.mana/myHero.maxMana >= self.Menu.Mode.Harass.MM.Mana:Value() / 100) and self.Menu.Mode.Harass.W:Value() and self:isReady(_W) then
 			Control.CastSpell(HK_W,target:GetPrediction(W.speed, W.delay))
 		end
 end

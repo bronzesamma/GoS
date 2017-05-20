@@ -137,7 +137,7 @@ local R = { range = 675, delay = myHero:GetSpellData(_R).delay, speed = myHero:G
 
 function Combo()
 	if GetEnemy(1100) == false then return end
-	local target = _G.SDK.TargetSelector:GetTarget(1100, _G.SDK.DAMAGE_TYPE_PHYSICAL)
+	local target = (_G.SDK.TargetSelector:GetTarget(1100, _G.SDK.DAMAGE_TYPE_PHYSICAL)) or (_G.GOS:GetTarget(1100,"AD"))
 	if Ready(_R) and Syndra.Combo.UseR:Value() and ValidTarget(target,R.range) then
 		local level = myHero:GetSpellData(_R).level
 		local Rdmg = CalcMagicalDamage(myHero, target, (({270, 405, 540})[level] + 0.6 * myHero.ap) + (({90, 135, 180})[level] + 0.2 * myHero.ap) * (#Balls + 3))
@@ -208,7 +208,7 @@ end
 
 function Harass()
 	if GetEnemy(800) == false then return end
-	local target = _G.SDK.TargetSelector:GetTarget(800, _G.SDK.DAMAGE_TYPE_PHYSICAL)
+	local target = (_G.SDK.TargetSelector:GetTarget(800, _G.SDK.DAMAGE_TYPE_PHYSICAL)) or (_G.GOS:GetTarget(800,"AD"))
 	if Ready(_Q) and Syndra.Harass.UseQ:Value() and ValidTarget(target,800) and (myHero.mana/myHero.maxMana > Syndra.Harass.Mana:Value() / 100) then
 		Control.CastSpell(HK_Q,target:GetPrediction(Q.speed,Q.delay))
 	end
@@ -312,13 +312,13 @@ Callback.Add('Tick',function()
 		Sphere = true
 		DelayAction(function() Orbs() end,1)
 	end
-	if _G.SDK.Orbwalker.Modes[_G.SDK.ORBWALKER_MODE_COMBO] then
+	if _G.SDK.Orbwalker.Modes[_G.SDK.ORBWALKER_MODE_COMBO] or _G.GOS:GetMode() == "Combo" then
 		Combo()
-	elseif 	_G.SDK.Orbwalker.Modes[_G.SDK.ORBWALKER_MODE_HARASS] then
+	elseif 	_G.SDK.Orbwalker.Modes[_G.SDK.ORBWALKER_MODE_HARASS] or _G.GOS:GetMode() == "Harass" then
 		Harass()
-	elseif _G.SDK.Orbwalker.Modes[_G.SDK.ORBWALKER_MODE_LANECLEAR] then
+	elseif _G.SDK.Orbwalker.Modes[_G.SDK.ORBWALKER_MODE_LANECLEAR] or _G.GOS:GetMode() == "Clear" then
 		Clear()
-	elseif _G.SDK.Orbwalker.Modes[_G.SDK.ORBWALKER_MODE_LASTHIT] then
+	elseif _G.SDK.Orbwalker.Modes[_G.SDK.ORBWALKER_MODE_LASTHIT] or _G.GOS:GetMode() == "Lasthit" then
 		Lasthit()
 	end
 	Transcendent()

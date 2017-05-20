@@ -1,3 +1,4 @@
+
 if myHero.charName ~= "Syndra" then return end
 
 local function GetManaPercentage(unit)
@@ -310,7 +311,7 @@ Callback.Add('Tick',function()
 		Sphere = false
 	elseif myHero:GetSpellData(_Q).currentCd >  0 and not Sphere then
 		Sphere = true
-		DelayAction(function() Orbs() end,1)
+		DelayAction(function() Orbs() end,0.1)
 	end
 	if (_G.SDK and _G.SDK.Orbwalker.Modes[_G.SDK.ORBWALKER_MODE_COMBO]) or (_G.GOS and _G.GOS:GetMode() == "Combo") then
 		Combo()

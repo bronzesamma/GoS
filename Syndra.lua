@@ -139,27 +139,27 @@ local R = { range = 675, delay = myHero:GetSpellData(_R).delay, speed = myHero:G
 function Combo()
 	if GetEnemy(1100) == false then return end
 	local target = (_G.SDK and _G.SDK.TargetSelector:GetTarget(1100, _G.SDK.DAMAGE_TYPE_PHYSICAL)) or (_G.GOS and _G.GOS:GetTarget(1100,"AD"))
-	if Ready(_R) and Syndra.Combo.UseR:Value() and ValidTarget(target,R.range) then
+	if Ready(_R) and Syndra.Combo.UseR:Value() and myHero.pos:DistanceTo(target.pos) < 700 and ValidTarget(target,R.range) then
 		local level = myHero:GetSpellData(_R).level
 		local Rdmg = CalcMagicalDamage(myHero, target, (({270, 405, 540})[level] + 0.6 * myHero.ap) + (({90, 135, 180})[level] + 0.2 * myHero.ap) * (#Balls + 3))
 		if Rdmg >= HpPred(target,1) + target.hpRegen * 2 then
 			Control.CastSpell(HK_R,target)
 		end
 	end
-	if Ready(_R) and Syndra.Combo.UseR:Value() and ValidTarget(target,R.range) then
+	if Ready(_R) and Syndra.Combo.UseR:Value() and myHero.pos:DistanceTo(target.pos) < 700 and ValidTarget(target,R.range) then
 		local level = myHero:GetSpellData(_R).level
 		local Rdmg = CalcMagicalDamage(myHero, target, (({270, 405, 540})[level] + 0.6 * myHero.ap))
 		if Rdmg >= HpPred(target,1) + target.hpRegen * 2 then
 			Control.CastSpell(HK_R,target)
 		end
 	end
-	if Ready(_Q) and Syndra.Combo.UseQ:Value() and ValidTarget(target,800) then
+	if Ready(_Q) and Syndra.Combo.UseQ:Value() and myHero.pos:DistanceTo(target.pos) < 750 and ValidTarget(target,800) then
 		Control.CastSpell(HK_Q,target:GetPrediction(Q.speed,Q.delay))
 	end
 	if Ready(_E) and Syndra.Combo.UseE:Value() then
 		for i = 1, Game.HeroCount()  do
 			local hero = Game.Hero(i)
-			if hero.isEnemy and ValidTarget(hero, 1100) then
+			if hero.isEnemy and ValidTarget(hero, 1100) and myHero.pos:DistanceTo(target.pos) < 1000 then
 				for id, ball in pairs(Balls) do
 					if GetDistanceSqr(ball.pos,myHero.pos) < 700*700 then
 						local enemyPos = hero:GetPrediction(E.Speed,E.Delay)
@@ -173,7 +173,7 @@ function Combo()
 			end		
 		end
 	end
-	if Ready(_W) and ValidTarget(target,925) then
+	if Ready(_W) and ValidTarget(target,925) and myHero.pos:DistanceTo(target.pos) < 900 then
 		if myHero:GetSpellData(_W).toggleState == 2 then
 			Control.CastSpell(HK_W,target:GetPrediction(W.speed,W.delay))
 		elseif myHero:GetSpellData(_W).toggleState == 1 then
@@ -183,7 +183,7 @@ function Combo()
 		end
 	end
 	if Ready(_Q) and Ready(_E) and Syndra.Combo.UseQ:Value() and Syndra.Combo.UseE:Value() then
-		if ValidTarget(target,1100) then
+		if ValidTarget(target,1100) and myHero.pos:DistanceTo(target.pos) < 1000 then
 			local pos = target:GetPrediction(2000,0.943)
 			pos = myHero.pos + (pos - myHero.pos):Normalized()*(800 - 65)
 			Control.SetCursorPos(pos) 
@@ -210,7 +210,7 @@ end
 function Harass()
 	if GetEnemy(800) == false then return end
 	local target = (_G.SDK and _G.SDK.TargetSelector:GetTarget(800, _G.SDK.DAMAGE_TYPE_PHYSICAL)) or (_G.GOS and _G.GOS:GetTarget(800,"AD"))
-	if Ready(_Q) and Syndra.Harass.UseQ:Value() and ValidTarget(target,800) and (myHero.mana/myHero.maxMana > Syndra.Harass.Mana:Value() / 100) then
+	if Ready(_Q) and Syndra.Harass.UseQ:Value() and myHero.pos:DistanceTo(target.pos) < 750 and ValidTarget(target,800) and (myHero.mana/myHero.maxMana > Syndra.Harass.Mana:Value() / 100) then
 		Control.CastSpell(HK_Q,target:GetPrediction(Q.speed,Q.delay))
 	end
 end

@@ -98,7 +98,7 @@ local Icon = { 	C = "https://vignette2.wikia.nocookie.net/leagueoflegends/images
 				E = "https://vignette3.wikia.nocookie.net/leagueoflegends/images/9/9c/Scatter_the_Weak.png",
 				R = "https://vignette1.wikia.nocookie.net/leagueoflegends/images/1/1d/Unleashed_Power.png" }
 
-local Syndra = MenuElement({type = MENU, id = "Syndra", name = "Ripper Syndra", leftIcon = "http://ddragon.leagueoflegends.com/cdn/7.1.1/img/champion/Syndra.png"})
+local Syndra = MenuElement({type = MENU, id = "Syndra", name = "Main Syndra", leftIcon = "http://ddragon.leagueoflegends.com/cdn/7.1.1/img/champion/Syndra.png"})
 Syndra:MenuElement({type = MENU, id = "Combo", name = "Combo"})
 Syndra.Combo:MenuElement({id = "UseQ", name = "[Q] Dark Sphere", value = true, leftIcon = Icon.Q})
 Syndra.Combo:MenuElement({id = "UseW", name = "[W] Force of Will", value = true, leftIcon = Icon.W})
